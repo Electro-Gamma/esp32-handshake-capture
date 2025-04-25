@@ -46,7 +46,7 @@ The developers are not responsible for any misuse, damage, or legal consequences
      https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
      ```
 2. Open Boards Manager and install "ESP32"
-3. Load `handshake_capture.ino`
+3. Load `esp32-handshake-capture.ino`
 4. Select:
    - Board: ESP32 Dev Module
    - Port: Your correct COM/tty port
