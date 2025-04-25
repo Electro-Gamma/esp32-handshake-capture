@@ -2,10 +2,11 @@
 
 <div align="center">
   
-![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)
-![Ethical Use](https://img.shields.io/badge/INTENDED_USE-Pentesting_Research-red)
-![Platform](https://img.shields.io/badge/Platform-ESP32-important)
-![Warning](https://img.shields.io/badge/WARNING-Legal_Restrictions-yellow)
+[![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE.md)
+[![Ethical Use](https://img.shields.io/badge/INTENDED_USE-Pentesting_Research-red)](https://github.com/Electro-Gamma/esp32-handshake-capture/blob/main/README.md#ethical-use)
+[![Platform](https://img.shields.io/badge/Platform-ESP32-important)](https://github.com/Electro-Gamma/esp32-handshake-capture/blob/main/README.md#requirements)
+[![Warning](https://img.shields.io/badge/WARNING-Legal_Restrictions-yellow)](https://github.com/Electro-Gamma/esp32-handshake-capture/blob/main/README.md#legal-disclaimer)
+
 
 </div>
 
