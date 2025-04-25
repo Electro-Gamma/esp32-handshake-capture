@@ -112,7 +112,7 @@ The authors are not liable for illegal or unethical use.
 ## License
 
 This project is licensed under the **GNU General Public License v3.0 (GPLv3)**.  
-See the [LICENSE](LICENSE) file for full terms.
+See the [LICENSE](LICENSE.md) file for full terms.
 
 ---
 
