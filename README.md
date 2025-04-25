@@ -1,13 +1,15 @@
 # WiFi Handshake Capture Tool
 
-Educational tool for demonstrating WPA/WPA2 4-way handshake capture using ESP32.  
-Designed for WiFi security research, penetration testing training, and ethical hacking labs.
+<div align="center">
+  
+![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)
+![Ethical Use](https://img.shields.io/badge/INTENDED_USE-Pentesting_Research-red)
+![Platform](https://img.shields.io/badge/Platform-ESP32-important)
+![Warning](https://img.shields.io/badge/WARNING-Legal_Restrictions-yellow)
 
-![ethical-use-badge](https://img.shields.io/badge/INTENDED_USE-Pentesting_Research-red)
+</div>
 
----
-
-## Legal Disclaimer
+## ⚠️ Legal Disclaimer
 
 This software is provided strictly for educational and authorized testing purposes only.  
 Unauthorized use of this tool against networks you do not own or have written permission to test is illegal in most jurisdictions.  
