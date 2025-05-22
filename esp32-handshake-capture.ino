@@ -33,6 +33,7 @@ typedef struct {
   uint8_t bssid[6];
   int ch;
   int rssi;
+  String encryption;
 } Network;
 
 // Global variables
@@ -161,7 +162,9 @@ void printHelp() {
 void scanNetworks() {
   Serial.println("\nScanning networks...");
   WiFi.scanDelete();
-  int n = WiFi.scanNetworks(false, true);
+  
+  // Perform the scan using the same method as network_scan.cpp
+  int n = WiFi.scanNetworks(false, true); // Async scan, hidden networks
   
   if (n == 0) {
     Serial.println("No networks found");
@@ -172,10 +175,28 @@ void scanNetworks() {
   memset(networks, 0, sizeof(networks));
 
   for (int i = 0; i < min(n, 20); i++) {
-    networks[i].ssid = WiFi.SSID(i);
+    String ssid = WiFi.SSID(i);
+    
+    // Handle hidden networks
+    if (ssid.isEmpty()) {
+      networks[i].ssid = "<HIDDEN>";
+    } else {
+      networks[i].ssid = ssid;
+    }
+    
     memcpy(networks[i].bssid, WiFi.BSSID(i), 6);
     networks[i].ch = WiFi.channel(i);
     networks[i].rssi = WiFi.RSSI(i);
+    
+    // Add encryption type information
+    wifi_auth_mode_t encryption = WiFi.encryptionType(i);
+    if (encryption == WIFI_AUTH_OPEN) networks[i].encryption = "Open";
+    else if (encryption == WIFI_AUTH_WEP) networks[i].encryption = "WEP";
+    else if (encryption == WIFI_AUTH_WPA_PSK) networks[i].encryption = "WPA";
+    else if (encryption == WIFI_AUTH_WPA2_PSK) networks[i].encryption = "WPA2";
+    else if (encryption == WIFI_AUTH_WPA_WPA2_PSK) networks[i].encryption = "WPA/WPA2";
+    else if (encryption == WIFI_AUTH_WPA2_ENTERPRISE) networks[i].encryption = "WPA2 Enterprise";
+    else networks[i].encryption = "Unknown";
   }
   
   Serial.printf("Found %d networks\n", n);
@@ -183,8 +204,8 @@ void scanNetworks() {
 
 void listNetworks() {
   Serial.println("\nScanned Networks:");
-  Serial.println("ID | SSID             | BSSID           | CH | RSSI");
-  Serial.println("--------------------------------------------------");
+  Serial.println("ID | SSID             | BSSID           | CH | RSSI  | Encryption");
+  Serial.println("---------------------------------------------------------------");
   
   for (int i = 0; i < 20; i++) {
     if (networks[i].ssid == "") continue;
@@ -194,9 +215,9 @@ void listNetworks() {
              networks[i].bssid[0], networks[i].bssid[1], networks[i].bssid[2],
              networks[i].bssid[3], networks[i].bssid[4], networks[i].bssid[5]);
     
-    Serial.printf("%2d | %-16s | %s | %2d | %4d\n", 
+    Serial.printf("%2d | %-16s | %s | %2d | %5d | %s\n", 
                  i, networks[i].ssid.c_str(), bssidStr, 
-                 networks[i].ch, networks[i].rssi);
+                 networks[i].ch, networks[i].rssi, networks[i].encryption.c_str());
   }
 }
 
